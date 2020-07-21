@@ -71,7 +71,7 @@ class DosenController extends Controller
         $asesor = Asesor::where('dosen_id', Auth::guard('dosen')->user()->id)->first();
         $pdf = PDF::loadview('dosen.kesimpulan_kinerja_dosen',['dosen'=>$dosen, 'pendidikan'=>$pendidikan, 
         'penelitian'=>$penelitian, 'pengabdian'=>$pengabdian, 'penunjang'=>$penunjang, 'asesor'=>$asesor, 'a'=>$a, 'b'=>$b, 'total'=>$total]);
-        return $pdf->stream('laporan-kesimpulan-kinerja-dosen-pdf');
+        return $pdf->stream('laporan-kesimpulan-kinerja-dosen-pdf'); 
     }
     public function cetak_kesimpulan_kewajiban_khusus_pdf()
     {

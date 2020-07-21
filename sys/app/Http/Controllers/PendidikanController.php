@@ -56,6 +56,8 @@ class PendidikanController extends Controller
             'sks_kinerja' => 'required',
             'rekomendasi' => 'required'
         ]);
+        
+
         $input = $request->except('buktipenugasan_bebankerja', 'buktidokumen_kinerja');
         $input['dosen_id'] = Auth::guard('dosen')->user()->id;
         $doc = $request->file('buktidokumen_kinerja');

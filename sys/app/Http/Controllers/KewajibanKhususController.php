@@ -51,14 +51,24 @@ class KewajibanKhususController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $message = array(
+            'periode.required' => 'Periode Tidak Boleh Kosong',
+            'tahun.required' => 'Tahun Tidak Boleh Kosong',
+            'judul_karya.required' => 'Judul Karya Tidak Boleh Kosong',
+            'jenis_karya.required' => 'Jenis Karya Tidak Boleh Kosong',
+        );
+
+        $rules = array(
             'periode' => 'required',
             'tahun' => 'required',
             'judul_karya' => 'required',
             'jenis_karya' => 'required'
-        ]);
- 
-        
+        );
+        $validator = Validator::make($request->all(), $rules, $message);
+        if($validator->fails()){
+            Alert::error('Gagal, Harap Periksa Kembali !');
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
         $input = $request->only('periode', 'tahun', 'judul_karya', 'jenis_karya');
         $input['dosen_id'] = Auth::guard('dosen')->user()->id;
         $data = kewajiban_khusus::create($input); //Kase sesuai
@@ -251,6 +261,7 @@ class KewajibanKhususController extends Controller
                 }
                 Alert::success('Berhasil');
         return redirect()->route('kewajiban_khusus.index');
+        }
     }
 
 

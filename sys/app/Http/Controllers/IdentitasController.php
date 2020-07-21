@@ -78,6 +78,7 @@ class IdentitasController extends Controller
         );
         $validator = Validator::make($request->all(), $rules, $message);
         if($validator->fails()){
+            Alert::error('Gagal, Harap Periksa Kembali !');
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
         $data = Dosen::findOrFail(Auth::guard('dosen')->user()->id);
