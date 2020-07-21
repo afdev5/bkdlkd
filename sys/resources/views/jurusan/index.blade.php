@@ -28,9 +28,11 @@
                 <thead>
                 <tr>
                   <th style="width: 25px">No</th>
-                  <th>Jurusan</th>
-                  <th>Jenjang</th>
                   <th>Fakultas</th>
+                  <th>Jurusan/Program Studi</th>
+                  <th>Jenjang</th>
+                  <th>Nama Kajur/Kaprodi</th>
+                  <th>NIP</th>
                   <th style="width: 150px">Aksi</th>
                 </tr>
                 </thead>
@@ -55,9 +57,11 @@
                     ajax: "{{ route('datatable.jurusan') }}",
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'fakultas', name: 'fakultas'},
                         {data: 'nama', name: 'nama'},
                         {data: 'jenjang', name: 'jenjang'},
-                        {data: 'fakultas', name: 'fakultas'},
+                        {data: 'kajur', name: 'kajur'},
+                        {data: 'nip_kajur', name: 'nip_kajur'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                     ]
                 });

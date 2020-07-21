@@ -459,7 +459,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="semester">Semester <i class="fa fa-asterisk" style="color:red"></i></label>
-                                <input type="="text"
+                                <input type="text"
                                 class="form-control{{ $errors->has('semester') ? ' is-invalid' : '' }}"
                                 value="{{ $data->semester }}" readonly>
                             </div>
@@ -469,7 +469,7 @@
                         <label for="email">Email <i class="fa fa-asterisk" style="color:red"></i></label>
                         <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                             id="email" name="email" value="{{ $data->email }}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                            value="{{ $data->email }}" readonly>>
+                            value="{{ $data->email }}" readonly>
                         @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -480,7 +480,7 @@
                         <label for="ktp">KTP <i class="fa fa-asterisk" style="color:red"></i></label>
                         <input type="file" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}" id="ktp"
                             name="ktp" value="{{ $data->ktp }}" class="form-control{{ $errors->has('ktp') ? ' is-invalid' : '' }}"
-                            value="{{ $data->ktp }}" readonly>>
+                            value="{{ $data->ktp }}" readonly>
                         @if ($errors->has('ktp'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('ktp') }}</strong>
@@ -491,7 +491,7 @@
                         <label for="foto">Foto <i class="fa fa-asterisk" style="color:red"></i></label>
                         <input type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" id="foto"
                             name="foto" value="{{ $data->foto }}" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
-                            value="{{ $data->foto }}" readonly>>
+                            value="{{ $data->foto }}" readonly>
                         @if ($errors->has('foto'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('foto') }}</strong>

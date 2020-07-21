@@ -18,8 +18,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/identias', 'IdentitasController@index')->name('identitas.index');
-Route::post('/identias', 'IdentitasController@store')->name('identitas.store');
+Route::get('/identitas', 'IdentitasController@index')->name('identitas.index');
+Route::post('/identitas', 'IdentitasController@store')->name('identitas.store');
 
 Route::resource('/fakultas', 'FakultasController');
 Route::resource('/jurusan', 'JurusanController');
@@ -81,6 +81,7 @@ Route::post('dosen-login', ['as' => 'dosen-login', 'uses' => 'Auth\DosenLoginCon
 
 //ganti Password
 Route::POST('/password_ganti', 'DosenController@password')->name('password.ganti');
+Route::POST('/password_gantis', 'HomeController@password')->name('password.gantis');
 
 // Asesor Rubah Status
 Route::get('/pendidikan/status/{id}/{status}', 'PendidikanController@status')->name('pendidikan.status');

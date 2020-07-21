@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fakultas extends Model
 {
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'dekan', 'nip_dekan', ];
 
     public function jurusan()
     {

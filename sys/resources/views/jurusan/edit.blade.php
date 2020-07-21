@@ -37,6 +37,24 @@
                     @endif
                 </div>
                 <div class="form-group">
+                  <label for="kajur">Nama Kajur/Kaprodi</label>
+                  <input type="text" class="form-control{{ $errors->has('kajur') ? ' is-invalid' : '' }}" id="kajur" name="kajur" value="{{ $data->kajur }}">
+                  @if ($errors->has('kajur'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('kajur') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                  <label for="nip">NIP</label>
+                  <input type="text" class="form-control{{ $errors->has('nip') ? ' is-invalid' : '' }}" id="nip" name="nip" value="{{ $data->nip }}">
+                  @if ($errors->has('nip'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('nip') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
                   <label for="jenjang">Jenjang</label>
                   <input type="text" class="form-control{{ $errors->has('jenjang') ? ' is-invalid' : '' }}" id="jenjang" name="jenjang" value="{{ $data->jenjang }}">
                   @if ($errors->has('jenjang'))

@@ -159,7 +159,10 @@
                 <tr>
                     <td nowrap="nowrap">Tempat - Tgl. Lahir</td>
                     <td nowrap="nowrap">:</td>
-                    <td nowrap="nowrap">{{ $dosen->tmpt_lhr .' - '. $dosen->tgl_lhr}}</td>
+                    @php
+                       $lahir = \Carbon\Carbon::parse($dosen->tgl_lhr)->format('d-M-Y'); 
+                    @endphp
+                    <td nowrap="nowrap">{{ $dosen->tmpt_lhr .' - '. $lahir}}</td>
                 </tr>
                 <tr>
                     <td nowrap="nowrap">S1</td>

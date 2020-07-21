@@ -1,7 +1,17 @@
 <html>
 
 <head>
-    <title>Cetak Kesimpulan Kinerja Dosen</title>
+    <title>Cetak Kesimpulan Kewajiban Khusus</title>
+    <style>
+            .page-break {
+                page-break-after: always;
+            }
+    
+            .text-red {
+                color: red;
+            }
+    
+        </style>
 </head>
 
 <body>
@@ -27,9 +37,21 @@
                     </tr>
                 </tbody>
             </table>
-
             <table width="10%" border="0" align="center">
-                <tbody>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="{{ asset('upload/'.Auth::guard('dosen')->user()->foto.'') }}" width="86px" height="100px"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+
+                    <td>
+
                     <tr>
                         <td nowrap="nowrap">Nama</td>
                         <td nowrap="nowrap">:</td>
@@ -66,8 +88,13 @@
                         <td nowrap="nowrap">:</td>
                         <td nowrap="nowrap">{{ $dosen->jenis_dosen }}</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
                     <table width="100%" border="1">
                         <tbody>
 
@@ -80,25 +107,67 @@
                                 <td align="center"><b>Bukti Dokumen</b></td>
                                 <td align="center"><b>Kesimpulan</b></td>
                             </tr>
-        
+                            @foreach($kewajiban_khusus as $kewajiban_khusus)
                             <tr>
-                                <td align="center">1<&nbsp;</td>
-                                <td align="center">2020&nbsp;</td>
-                                <td align="center">Cobacoba&nbsp;</td>
-                                <td align="center">Jurnal Internasional&nbsp;</td>
-                                <td align="center">Tomohon&nbsp;</td>
-                                <td align="center">coba.docx&nbsp;</td>
-                                <td align="center">Memenuhi&nbsp;</td>
+                                <td>1<&nbsp;</td>
+                                <td>{{ $kewajiban_khusus->tahun }}&nbsp;</td>
+                                <td>{{ $kewajiban_khusus->judul_karya }}&nbsp;</td>
+                                <td>{{ $kewajiban_khusus->jenis_karya }}&nbsp;</td>
+                                <td>
+                                    @if($kewajiban_khusus->jenis_karya == 'Jurnal Internasional Bereputasi')
+                                        @php 
+                                            $ab = App\jurnal_internasional_bereputasi::where('kewajiban_khususes_id', $kewajiban_khusus->id)->first();
+                                        @endphp
+                                        @if($ab->nama_jurnal != null)
+                                            <p>{{ $ab->nama_jurnal }}</p><br>
+                                        @endif
+                                        @if($ab->volume != null)
+                                            <p>{{ $ab->volume }}</p><br>
+                                        @endif
+                                        @if($ab->nomor != null)
+                                            <p>{{ $ab->nomor }}</p><br>
+                                        @endif
+                                        @if($ab->impact_factor != null)
+                                            <p>{{ $ab->impact_factor }}</p><br>
+                                        @endif
+                                        @if($ab->alamat_url != null)
+                                            <p>{{ $ab->almat_url }}</p><br>
+                                        @endif
+                                    @elseif($kewajiban_khusus->jenis_karya == 'Jurnal Internasional')
+                                    @php 
+                                            $ab = App\jurnal_internasional::where('kewajiban_khususes_id', $kewajiban_khusus->id)->first();
+                                        @endphp
+                                        @if($ab->artikel != null)
+                                            <p>{{ $ab->artikel }}</p><br>
+                                        @endif
+                                        @if($ab->cover_depan != null)
+                                            <p>{{ $ab->cover_depan }}</p><br>
+                                        @endif
+                                        @if($ab->daftar_isi != null)
+                                            <p>{{ $ab->daftar_isi }}</p><br>
+                                        @endif
+                                        @if($ab->lain_lain != null)
+                                            <p>{{ $ab->lain_lain }}</p><br>
+                                        @endif
+                                    
+                                    @endif
+                                </td>
+                                <td>dokumen.pdf&nbsp;</td>
+                                <td>Memenuhi&nbsp;</td>
                             </tr>
+                            @endforeach
 
                             <tr>
                                 <td colspan="12">
-                                    <label class="headtitlekop"><b>Kesimpulan: </b><br>
+                                    <label class="headtitlekop"><b>Kesimpulan: </b>
+                                        Memenuhi Syarat PERMEN RISETDIKTI No.20 Tahun 2017
                                 </td>
                             </tr>
                         </tbody>
                     </table>
             
+                    <div class="page-break"></div>
+
                     <p align="center"><b>PERNYATAAN DOSEN</b> <br>Saya dosen yang membuat laporan kinerja ini menyatakan bahwa semua
                         aktifitas dan bukti pendukungnya aktifitas saya dan saya sanggup menerimasanksi apapun termasuk penghentian
                         tunjangan dan mengembalikan yang sudah saya terima apabila pernyataan ini dikemudian hari terbukti tidak
@@ -198,7 +267,7 @@
                                         </tbody>
                                     </table>
                                 </td>
-                                <td width="25%">
+                                <td width="12%">
             
                                     <table width="100%">
                                         <tbody>
@@ -217,7 +286,9 @@
                                         </tbody>
                                     </table>
                                 </td>
-                            
+                                
+                                <br>
+                                <br>
                                     <table width="500" align="center">
                                         <tbody>
                                             <tr>
@@ -230,7 +301,7 @@
                                             <tr>
                                                 <td align="center" valign="bottom" nowrap="nowrap" height="81">
                                                     <<span>
-                                                        <u>{{ $dosen->nama_kajur }}</u></span><br>
+                                                        <u>{{ $dosen->jurusan['nip_kajur'] }}</u></span><br>
                                                         <span>NIDN. </span>
                                                 </td>
                                             </tr>

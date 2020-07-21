@@ -56,6 +56,24 @@
                         </span>
                     @endif
                 </div>
+                <div class="form-group">
+                  <label for="dekan">Nama Dekan</label>
+                  <input type="text" class="form-control{{ $errors->has('dekan') ? ' is-invalid' : '' }}" id="dekan" name="dekan" value="{{ $data->dekan }}">
+                  @if ($errors->has('dekan'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('dekan') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                  <label for="nip_dekan">NIP</label>
+                  <input type="text" class="form-control{{ $errors->has('nip_dekan') ? ' is-invalid' : '' }}" id="nip_dekan" name="nip_dekan" value="{{ $data->nip_dekan }}">
+                  @if ($errors->has('nip_dekan'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('nip_dekan') }}</strong>
+                        </span>
+                    @endif
+                </div>
               </div>
               <!-- /.box-body -->
 
