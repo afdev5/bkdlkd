@@ -38,62 +38,68 @@
                 </tbody>
             </table>
             <table width="10%" border="0" align="center">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td><img src="{{ asset('upload/'.Auth::guard('dosen')->user()->foto.'') }}" width="86px" height="100px"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-
-                    <td>
-
+                <tbody>
                     <tr>
-                        <td nowrap="nowrap">Nama</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->gelar_depan. ' '. $dosen->nama . ', ' .$dosen->gelar_belakang}}
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><img src="{{ asset('upload/'.Auth::guard('dosen')->user()->foto.'') }}"
+                                                width="86px" height="100px"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td nowrap="nowrap">Nama</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">
+                                            {{ $dosen->gelar_depan. ' '. $dosen->nama . ', ' .$dosen->gelar_belakang}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">NIDN</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->nidn }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">Jurusan/Prodi</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->jurusan['nama'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">Fakultas</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->jurusan->fakultas['nama'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">Perguruan Tinggi</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->pt }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">Semester-Tahun Laporan</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->semester .' - '. $dosen->thn_akademik}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="nowrap">Status</td>
+                                        <td nowrap="nowrap">:</td>
+                                        <td nowrap="nowrap">{{ $dosen->jenis_dosen }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td nowrap="nowrap">NIDN</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->nidn }}</td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap">Jurusan/Prodi</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->jurusan['nama'] }}</td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap">Fakultas</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->jurusan->fakultas['nama'] }}</td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap">Perguruan Tinggi</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->pt }}</td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap">Semester-Tahun Laporan</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->semester .' - '. $dosen->thn_akademik}}</td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap">Status</td>
-                        <td nowrap="nowrap">:</td>
-                        <td nowrap="nowrap">{{ $dosen->jenis_dosen }}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
             </td>
-        </tr>
-    </tbody>
-</table>
+            </tr>
+            </tbody>
+            </table>
             <table width="100%" border="1">
                 <tbody>
 
@@ -146,12 +152,16 @@
                         <td align="center">Minimal 9 SKS&nbsp;</td>
                         <td align="center">{{$a}} SKS&nbsp;</td>
                         <td align="center">
-                            @if($a < 9) <p class="text-red">Tidak Memenuhi</p> @else Memenuhi @endif </td> </tr> <tr>
+                            @if($a < 9) <p class="text-red">Tidak Memenuhi</p> @else Memenuhi @endif </td>
+                    </tr>
+                    <tr>
                         <td align="center">5<&nbsp;</td> <td align="center">Pengabdian + Penunjang&nbsp;</td>
                         <td align="center">Minimal 3 SKS&nbsp;</td>
                         <td align="center">{{$b}} SKS&nbsp;</td>
                         <td align="center">
-                            @if($a < 3) <p class="text-red">Tidak Memenuhi</p> @else Memenuhi @endif </td> </tr> <tr>
+                            @if($a < 3) <p class="text-red">Tidak Memenuhi</p> @else Memenuhi @endif </td>
+                    </tr>
+                    <tr>
                         <td align="center">6<&nbsp;</td> <td align="center">Total Kinerja&nbsp;</td>
                         <td align="center">Min. 12 SKS, Mak. 16 SKS&nbsp;</td>
                         <td align="center">{{$total}} SKS&nbsp;</td>
