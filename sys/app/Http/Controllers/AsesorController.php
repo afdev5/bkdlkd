@@ -64,8 +64,8 @@ class AsesorController extends Controller
      */
     public function show($id)
     {
-        $data = Dosen::findOrFail($id);
-        return view('asesor.show', compact('data'));
+        // $data = Dosen::findOrFail($id);
+        // return view('asesor.show', compact('data'));
     }
 
     /**
@@ -138,10 +138,9 @@ class AsesorController extends Controller
                 return $data->jurusan['fakultas']['nama'];
             })
             ->addColumn('action', function($data) {
-                return view('datatable.action_show', [
+                return view('datatable.action', [
                     'edit_url' => route('asesor.edit', $data->id),
                     'del_url'  => route('asesor.destroy', $data->id),
-                    'show_url'  => route('asesor.show', $data->id),
                 ]);
 
             })

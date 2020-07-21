@@ -310,8 +310,8 @@
                                 </tr>
                                 <tr>
                                     <td align="left" valign="bottom" nowrap="nowrap" height="81">
-                                        <span><u>{{ $dosen->nama_kajur }}</u></span><br>
-                                        <span>NIDN. </span>
+                                        <u>{{ $dosen->jurusan['kajur'] }}</u></span><br>
+                                        <span>NIP. {{ $dosen->jurusan['nip_kajur'] }} </span>
                                     </td>
                                 </tr>
                             </tbody>

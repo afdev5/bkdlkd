@@ -26,8 +26,6 @@ class CreateDosensTable extends Migration
             $table->string('pt')->nullable();
             $table->string('alamat_pt')->nullable();
             $table->string('nama_rektor')->nullable();
-            $table->string('nama_dekan')->nullable();
-            $table->string('nama_kajur')->nullable();
             $table->enum('jab_fungsional', ['Asisten Ahli', 'Lektor', 'Lektor Kepala', 'Profesor'])->nullable();
             $table->enum('golongan', ['III.b', 'III.c', 'III.d', 'IV.a', 'IV.b', 'IV.c', 'IV.d'])->nullable();
             $table->string('tgl_lhr')->nullable();

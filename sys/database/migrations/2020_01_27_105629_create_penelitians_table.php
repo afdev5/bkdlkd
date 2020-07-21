@@ -24,6 +24,7 @@ class CreatePenelitiansTable extends Migration
             $table->string('buktidokumen_kinerja');
             $table->string('buktidokumen_kinerja_ket');
             $table->float('sks_kinerja');
+            $table->enum('rekomendasi', ['Selesai', 'Lanjutkan', 'Gagal', 'Lainnya', 'Beban Lebih']);
             $table->enum('status1_bk', ['Belum diperiksa', 'Terima', 'Tolak'])->default('Belum diperiksa');
             $table->string('komen1_bk')->nullable();
             $table->enum('status2_bk', ['Belum diperiksa', 'Terima', 'Tolak'])->default('Belum diperiksa');

@@ -49,6 +49,8 @@
                 <tr>
                   <th style="width: 25px">No</th>
                   <th>Fakultas</th>
+                  <th>Dekan</th>
+                  <th>NIP</th>
                   <th style="width: 150px">Aksi</th>
                 </tr>
                 </thead>
@@ -74,6 +76,8 @@
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'nama', name: 'nama'},
+                        {data: 'dekan', name: 'dekan'},
+                        {data: 'nip_dekan', name: 'nip_dekan'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                     ]
                 });

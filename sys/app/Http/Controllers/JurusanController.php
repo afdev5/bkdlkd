@@ -42,6 +42,8 @@ class JurusanController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'jenjang' => 'required',
+            'kajur' => 'required',
+            'nip_kajur' => 'required',
             'fakultas_id' => 'required'
         ]);
         $input = $request->all();
@@ -91,6 +93,8 @@ class JurusanController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'kajur' => 'required',
+            'nip_kajur' => 'required',
         ]);
         $input = $request->all();
         $data = Jurusan::findOrFail($id);
@@ -119,6 +123,19 @@ class JurusanController extends Controller
             ->addColumn('fakultas', function($data) {
                 return $data->fakultas['nama'];
             })
+
+            ->addColumn('jurusan', function($data) {
+                return $data->jurusan['nama'];
+            })
+
+            ->addColumn('jurusan', function($data) {
+                return $data->jurusan['kajur'];
+            })
+
+            ->addColumn('jurusan', function($data) {
+                return $data->jurusan['nip_kajur'];
+            })
+
             ->addColumn('action', function($data) {
                 return view('datatable.action', [
                     'edit_url' => route('jurusan.edit', $data->id),

@@ -81,6 +81,26 @@
                             </span>
                             @endif
                         </div>
+                        <div class="form-group">
+                            <label for="kajur">Nama Kajur/Kaprodi</label>
+                            <input type="text" class="form-control{{ $errors->has('kajur') ? ' is-invalid' : '' }}"
+                                id="kajur" name="kajur" value="{{ old('kajur') }}">
+                            @if ($errors->has('kajur'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('kajur') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="nip_kajur">NIP</label>
+                            <input type="text" class="form-control{{ $errors->has('nip_kajur') ? ' is-invalid' : '' }}"
+                                id="nip_kajur" name="nip_kajur" value="{{ old('nip_kajur') }}">
+                            @if ($errors->has('nip_kajur'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('nip_kajur') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                     </div>
                     <!-- /.box-body -->
 

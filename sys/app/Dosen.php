@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon;
 
 class Dosen extends Authenticatable
 {
-    protected $fillable = ['no_sertifikat', 'no_sertifikat_bukti', 'nip', 'nidn', 'nira', 'nama', 'gelar_depan', 'gelar_belakang', 'pt', 'alamat_pt', 'nama_rektor', 'nama_dekan', 'nama_kajur', 'jab_fungsional', 'golongan', 'tgl_lhr', 'tmpt_lhr', 'pend_s1', 'ijazah_s1', 'pend_s2', 'ijazah_s2', 'pend_s3', 'ijazah_s3', 'jenis_dosen', 'bid_ilmu', 'no_hp', 'thn_akademik', 'semester', 'email', 'ktp', 'foto', 'password', 'level', 'jurusan_id'];
+    protected $fillable = ['no_sertifikat', 'no_sertifikat_bukti', 'nip', 'nidn', 'nira', 'nama', 'gelar_depan', 'gelar_belakang', 'pt', 'alamat_pt', 'nama_rektor', 'jab_fungsional', 'golongan', 'tgl_lhr', 'tmpt_lhr', 'pend_s1', 'ijazah_s1', 'pend_s2', 'ijazah_s2', 'pend_s3', 'ijazah_s3', 'jenis_dosen', 'bid_ilmu', 'no_hp', 'thn_akademik', 'semester', 'email', 'ktp', 'foto', 'password', 'level', 'jurusan_id'];
 
     protected $hidden = ['password'];
 
-    public function getCreatedAttribute()
+    public function getTgl_LhrAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['tgl_lhr'])->format('d-M-Y');
     }

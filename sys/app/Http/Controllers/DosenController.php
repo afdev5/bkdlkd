@@ -11,6 +11,8 @@ use App\Penelitian;
 use App\Pengabdian;
 use App\Penunjang;
 use App\Asesor;
+use App\kewajiban_khusus;
+use App\jurnal_internasioanl_bereputasi;
 use DataTables;
 use Auth;
 use PDF;
@@ -74,13 +76,12 @@ class DosenController extends Controller
     public function cetak_kesimpulan_kewajiban_khusus_pdf()
     {
         $dosen = Dosen::findOrFail(Auth::guard('dosen')->user()->id);
-        $pendidikan = Pendidikan::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
-        $penelitian = Penelitian::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
-        $pengabdian = Pengabdian::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
-        $penunjang = Penunjang::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
+        $kewajiban = kewajiban_khusus::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
+        // $penelitian = Penelitian::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
+        // $pengabdian = Pengabdian::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
+        // $penunjang = Penunjang::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
         $asesor = Asesor::where('dosen_id', Auth::guard('dosen')->user()->id)->first();
-        $pdf = PDF::loadview('dosen.kesimpulan_kewajiban_khusus',['dosen'=>$dosen, 'pendidikan'=>$pendidikan, 
-        'penelitian'=>$penelitian, 'pengabdian'=>$pengabdian, 'penunjang'=>$penunjang, 'asesor'=>$asesor]);
+        $pdf = PDF::loadview('dosen.kesimpulan_kewajiban_khusus',['dosen'=>$dosen, 'kewajiban_khusus'=>$kewajiban, 'asesor'=>$asesor]);
         return $pdf->stream('laporan-kesimpulan-kewajiban-khusus-pdf');
     }
 
@@ -103,12 +104,7 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'nidn' => 'required',
-        //     'nama' => 'required',
-        //     'jurusan_id' => 'required',
-        //     'password' => 'required',
-        // ]);
+ 
         $message = array(
             'nidn.required' => 'NIDN Tidak Boleh Kosong',
             'nama.required' => 'Nama Tidak Boleh Kosong',

@@ -16,6 +16,8 @@ class CreateFakultasTable extends Migration
         Schema::create('fakultas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
+            $table->string('dekan');
+            $table->string('nip_dekan');
             $table->timestamps();
         });
     }

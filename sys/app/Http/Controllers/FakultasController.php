@@ -39,6 +39,8 @@ class FakultasController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'dekan' => 'required',
+            'nip_dekan' => 'required',
             
         ]);
         $input = $request->all();
@@ -87,6 +89,8 @@ class FakultasController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'dekan' => 'required',
+            'nip_dekan' => 'required',
         ]);
         $input = $request->all();
         $data = Fakultas::findOrFail($id);
@@ -112,6 +116,14 @@ class FakultasController extends Controller
         $data = Fakultas::all();
 
         return Datatables::of($data)
+
+        ->addColumn('fakultas', function($data) {
+            return $data->fakultas['dekan'];
+        })
+
+        ->addColumn('fakultas', function($data) {
+            return $data->fakultas['nip_dekan'];
+        })
             ->addColumn('action', function($data) {
                 return view('datatable.action', [
                     'edit_url' => route('fakultas.edit', $data->id),

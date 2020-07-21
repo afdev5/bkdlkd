@@ -28,9 +28,6 @@ class IdentitasController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'nidn' => 'required',
-        // ]);
         $message = array(
             'nidn.required' => 'NIDN Tidak Boleh Kosong',
             'no_sertifikat.required' => 'No.Sertifikat Tidak Boleh Kosong',
@@ -39,8 +36,6 @@ class IdentitasController extends Controller
             'pt.required' => 'Perguruan Tinggi Tidak Boleh Kosong',
             'alamat_pt.required' => 'Alamat Perguruan Tinggi Tidak Boleh Kosong',
             'nama_rektor.required' => 'Nama Rektor Tidak Boleh Kosong',
-            'nama_dekan.required' => 'Nama Dekan Tidak Boleh Kosong',
-            'nama_kajur.required' => 'Nama Kajur/Kaprodi Tidak Boleh Kosong',
             'jab_fungsional.required' => 'Jabatan Fungsional Tidak Boleh Kosong',
             'golongan.required' => 'Golongan Tidak Boleh Kosong',
             'tgl_lhr.required' => 'Tanggal Lahir Tidak Boleh Kosong',
@@ -65,8 +60,6 @@ class IdentitasController extends Controller
             'pt' => 'required',
             'alamat_pt' => 'required',
             'nama_rektor' => 'required',
-            'nama_dekan' => 'required',
-            'nama_kajur' => 'required',
             'jab_fungsional' => 'required',
             'golongan' => 'required',
             'tgl_lhr' => 'required',

@@ -172,15 +172,10 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="nama_dekan">Nama Dekan <i class="fa fa-asterisk" style="color:red"></i></label>
+                                <label for="dekan">Nama Dekan </label>
                                 <input type="text"
-                                    class="form-control{{ $errors->has('nama_dekan') ? ' is-invalid' : '' }}"
-                                    id="nama_dekan" name="nama_dekan" value="{{ $data->nama_dekan }}">
-                                @if ($errors->has('nama_dekan'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('nama_dekan') }}</strong>
-                                </span>
-                                @endif
+                                    class="form-control{{ $errors->has('fakultas') ? ' is-invalid' : '' }}"
+                                    value="{{ $data->jurusan['fakultas']['dekan'] }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -196,15 +191,10 @@
                         <div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="nama_kajur">Nama Ketua Jurusan/Program Studi <i class="fa fa-asterisk" style="color:red"></i></label>
+                                    <label for="kajur">Nama Kajur/Kaprodi </label>
                                     <input type="text"
-                                        class="form-control{{ $errors->has('nama_kajur') ? ' is-invalid' : '' }}"
-                                        id="nama_kajur" name="nama_kajur" value="{{ $data->nama_kajur }}">
-                                    @if ($errors->has('nama_kajur'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nama_kajur') }}</strong>
-                                    </span>
-                                    @endif
+                                        class="form-control{{ $errors->has('jurusan') ? ' is-invalid' : '' }}"
+                                        value="{{ $data->jurusan['kajur'] }}" readonly>
                                 </div>
                             </div>
                         </div>

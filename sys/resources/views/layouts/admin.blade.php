@@ -53,29 +53,6 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            {{-- <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell"></i>
-                                    <span class="label label-warning">10</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="ion ion-ios-people info"></i> Notification title
-                                                </a>
-                                            </li>
-                                            ...
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li> --}}
-
                             <div class="navbar-custom-menu">
                                 <ul class="nav navbar-nav">
                                     <!-- User Account: style can be found in dropdown.less -->
@@ -254,15 +231,12 @@
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0.0
+                <b>Version</b> 0.4.0
             </div>
             <strong>Copyright &copy; 2020 <a href="#">Teknik Informatika</a>.</strong> All rights
             reserved.
         </footer>
 
-        <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-        <!-- <div class="control-sidebar-bg"></div> -->
     </div>
     <!-- ./wrapper -->
 
