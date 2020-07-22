@@ -46,7 +46,16 @@ class PenelitianController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $message = array(
+            'jenis_kegiatan.required' => 'Tidak Boleh Kosong',
+            'buktipenugasan_bebankerja.required' => 'Tidak Boleh Kosong',
+            'sks_bebankerja.required' => 'Tidak Boleh Kosong',
+            'masa_penugasan.required' => 'Tidak Boleh Kosong',
+            'buktidokumen_kinerja.required' => 'Tidak Boleh Kosong',
+            'sks_kinerja.required' => 'Tidak Boleh Kosong',
+            'rekomendasi.required' => 'Tidak Boleh Kosong'
+        );
+        $rules = array(
             'jenis_kegiatan' => 'required',
             'buktipenugasan_bebankerja' => 'required',
             'sks_bebankerja' => 'required',
@@ -54,20 +63,28 @@ class PenelitianController extends Controller
             'buktidokumen_kinerja' => 'required',
             'sks_kinerja' => 'required',
             'rekomendasi' => 'required'
-        ]);
-        $input = $request->except('buktipenugasan_bebankerja', 'buktidokumen_kinerja');
-        $input['dosen_id'] = Auth::guard('dosen')->user()->id;
-        $doc = $request->file('buktidokumen_kinerja');
-        $input['buktidokumen_kinerja'] = $doc->store('dokumen');
-        $b = $request->file('buktipenugasan_bebankerja');
-        $input['buktipenugasan_bebankerja'] = $b->store('penugasan');
-        // Input Asesor
-        $asesor = Asesor::where('dosen_id', Auth::guard('dosen')->user()->id)->first();
-        $input['asesor1_id'] = $asesor['asesor1_id'];
-        $input['asesor2_id'] = $asesor['asesor2_id'];
-        //
-        Penelitian::create($input);
-        return redirect()->route('penelitian.index');
+
+        );
+        $validator = Validator::make($request->all(), $rules, $message);
+        if ($validator->fails()) {
+            Alert::error('Gagal, Periksa Kembali !');
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $input = $request->except('buktipenugasan_bebankerja', 'buktidokumen_kinerja');
+            $input['dosen_id'] = Auth::guard('dosen')->user()->id;
+            $doc = $request->file('buktidokumen_kinerja');
+            $input['buktidokumen_kinerja'] = $doc->store('dokumen');
+            $b = $request->file('buktipenugasan_bebankerja');
+            $input['buktipenugasan_bebankerja'] = $b->store('penugasan');
+            // Input Asesor
+            $asesor = Asesor::where('dosen_id', Auth::guard('dosen')->user()->id)->first();
+            $input['asesor1_id'] = $asesor['asesor1_id'];
+            $input['asesor2_id'] = $asesor['asesor2_id'];
+            //
+            Penelitian::create($input);
+            Alert::success('Berhasil');
+            return redirect()->route('penelitian.index');
+        }
     }
 
     /**
@@ -103,20 +120,32 @@ class PenelitianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $message = array(
+            'jenis_kegiatan.required' => 'Tidak Boleh Kosong',
+            'sks_bebankerja.required' => 'Tidak Boleh Kosong',
+            'masa_penugasan.required' => 'Tidak Boleh Kosong',
+            'sks_kinerja.required' => 'Tidak Boleh Kosong',
+            'rekomendasi.required' => 'Tidak Boleh Kosong'
+        );
+        $rules = array(
             'jenis_kegiatan' => 'required',
-            'buktipenugasan_bebankerja' => 'required',
             'sks_bebankerja' => 'required',
             'masa_penugasan' => 'required',
-            'buktidokumen_kinerja' => 'required',
             'sks_kinerja' => 'required',
             'rekomendasi' => 'required'
-        ]);
-        $input = $request->all();
-        $data = Penelitian::findOrFail($id);
-        $data->update($input);
-        Alert::success('Berhasil');
-        return redirect()->route('penelitian.index');
+
+        );
+        $validator = Validator::make($request->all(), $rules, $message);
+        if ($validator->fails()) {
+            Alert::error('Gagal, Periksa Kembali !');
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $input = $request->all();
+            $data = Penelitian::findOrFail($id);
+            $data->update($input);
+            Alert::success('Berhasil');
+            return redirect()->route('penelitian.index');
+        }
     }
 
     /**
@@ -136,9 +165,9 @@ class PenelitianController extends Controller
     {
         $data = Penelitian::findOrFail($id);
         $g = array();
-        if($data->asesor1_id == Auth::guard('dosen')->user()->id){
+        if ($data->asesor1_id == Auth::guard('dosen')->user()->id) {
             $g['status1'] = $status;
-        } else if($data->asesor2_id == Auth::guard('dosen')->user()->id){
+        } else if ($data->asesor2_id == Auth::guard('dosen')->user()->id) {
             $g['status2'] = $status;
         }
         $data->update($g);
@@ -149,84 +178,72 @@ class PenelitianController extends Controller
         $data = Penelitian::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
 
         return Datatables::of($data)
-            ->addColumn('statush1', function($data) {
-                if($data->status1 == 'Belum diperiksa'){
+            ->addColumn('statush1', function ($data) {
+                if ($data->status1 == 'Belum diperiksa') {
                     return 'Belum Diterima';
-                } else if($data->status1 == 'Terima'){
+                } else if ($data->status1 == 'Terima') {
                     return 'Diterima';
                 } else {
                     return 'Ditolak';
                 }
-
             })
-            ->addColumn('statush2', function($data) {
-                if($data->status2 == 'Belum diperiksa'){
+            ->addColumn('statush2', function ($data) {
+                if ($data->status2 == 'Belum diperiksa') {
                     return 'Belum Diterima';
-                } else if($data->status2 == 'Terima'){
+                } else if ($data->status2 == 'Terima') {
                     return 'Diterima';
                 } else {
                     return 'Ditolak';
                 }
-
             })
-            ->addColumn('action', function($data) {
+            ->addColumn('action', function ($data) {
                 return view('datatable.action', [
                     'edit_url' => route('penelitian.edit', $data->id),
                     'del_url'  => route('penelitian.destroy', $data->id),
                 ]);
-
-
             })
-            ->addColumn('bukti_bk', function($data) {
-                $url = asset('upload/' .$data->buktipenugasan_bebankerja);
-                return '<a href="'.$url.'">'.$data->buktipenugasan_bebankerja_ket.'</a>';
-                
+            ->addColumn('bukti_bk', function ($data) {
+                $url = asset('upload/' . $data->buktipenugasan_bebankerja);
+                return '<a href="' . $url . '">' . $data->buktipenugasan_bebankerja_ket . '</a>';
             })
 
-            ->addColumn('bukti_k', function($data) {
-                $url = asset('upload/' .$data->buktidokumen_kinerja);
-                return '<a href="'.$url.'">'.$data->buktidokumen_kinerja_ket.'</a>';
-                
-            
+            ->addColumn('bukti_k', function ($data) {
+                $url = asset('upload/' . $data->buktidokumen_kinerja);
+                return '<a href="' . $url . '">' . $data->buktidokumen_kinerja_ket . '</a>';
             })
             ->addIndexColumn()->rawColumns(['action', 'bukti_bk', 'bukti_k'])->make(true);
-            
-    
     }
-public function datatable_asesor()
-{
-    $asesor = Asesor::where('asesor1_id', Auth::guard('dosen')->user()->id)->orWhere('asesor2_id', Auth::guard('dosen')->user()->id)->pluck('id');;
-    $data = Penelitian::whereIn('asesor1_id', $asesor)->orWhereIn('asesor2_id', $asesor)->get();
+    public function datatable_asesor()
+    {
+        $asesor = Asesor::where('asesor1_id', Auth::guard('dosen')->user()->id)->orWhere('asesor2_id', Auth::guard('dosen')->user()->id)->pluck('id');;
+        $data = Penelitian::whereIn('asesor1_id', $asesor)->orWhereIn('asesor2_id', $asesor)->get();
 
 
-    return Datatables::of($data)
-        ->addColumn('status1', function($data) {
-            if($data->status1 == 'Belum diperiksa'){
-                return 'Belum Diterima';
-            } else if($data->status1 == 'Terima'){
-                return 'Diterima';
-            } else {
-                return 'Ditolak';
-            }
-
-        })
-        ->addColumn('status2', function($data) {
-            if($data->status2 == 'Belum diperiksa'){
-                return 'Belum Diterima';
-            } else if($data->status2 == 'Terima'){
-                return 'Diterima';
-            } else {
-                return 'Ditolak';
-            }
-
-        })
-        ->addColumn('action', function($data) {
-            return view('datatable.action_asesor', [
-                'terima' => url('/penelitian/status/'.$data->id.'/Terima'),
-                'tolak'  => url('/penelitian/status/'.$data->id.'/Tolak'),
-            ]);
-
-        })
-        ->addIndexColumn()->make(true);
-}
+        return Datatables::of($data)
+            ->addColumn('status1', function ($data) {
+                if ($data->status1 == 'Belum diperiksa') {
+                    return 'Belum Diterima';
+                } else if ($data->status1 == 'Terima') {
+                    return 'Diterima';
+                } else {
+                    return 'Ditolak';
+                }
+            })
+            ->addColumn('status2', function ($data) {
+                if ($data->status2 == 'Belum diperiksa') {
+                    return 'Belum Diterima';
+                } else if ($data->status2 == 'Terima') {
+                    return 'Diterima';
+                } else {
+                    return 'Ditolak';
+                }
+            })
+            ->addColumn('action', function ($data) {
+                return view('datatable.action_asesor', [
+                    'terima' => url('/penelitian/status/' . $data->id . '/Terima'),
+                    'tolak'  => url('/penelitian/status/' . $data->id . '/Tolak'),
+                ]);
+            })
+            ->addIndexColumn()->make(true);
+    }
 }
