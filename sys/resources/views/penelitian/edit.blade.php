@@ -49,11 +49,11 @@
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="jenis_kegiatan">
                                         <option>Pilih</option>
-                                        <option value="A">Menghasilkan Karya Ilmiah</option>
-                                        <option value="B">Menerjemahkan/Penyaduran Buku Ilmiah</option>
-                                        <option value="C">Mengedit/Menyunting Karya Ilmiah</option>
-                                        <option value="D">Membuat Rencana dan Karya Teknologi yang dipatenkan</option>
-                                        <option value="E">Membuat Rancangan dan Karya Teknologi, Rancangan dan Karya
+                                        <option value="A" {{ $data->jenis_kegiatan == 'A' ? 'selected' : '' }}>Menghasilkan Karya Ilmiah</option>
+                                        <option value="B" {{ $data->jenis_kegiatan == 'B' ? 'selected' : '' }}>Menerjemahkan/Penyaduran Buku Ilmiah</option>
+                                        <option value="C" {{ $data->jenis_kegiatan == 'C' ? 'selected' : '' }}>Mengedit/Menyunting Karya Ilmiah</option>
+                                        <option value="D" {{ $data->jenis_kegiatan == 'D' ? 'selected' : '' }}>Membuat Rencana dan Karya Teknologi yang dipatenkan</option>
+                                        <option value="E" {{ $data->jenis_kegiatan == 'E' ? 'selected' : '' }}>Membuat Rancangan dan Karya Teknologi, Rancangan dan Karya
                                             Seni Monumental/Seni, Pertunjukan/Karya Sastra</option>
                                         @if ($errors->has('jenis_kegiatan'))
                                         <span class="invalid-feedback" role="alert">
@@ -167,11 +167,11 @@
                             <select class="form-control{{ $errors->has('rekomendasi') ? ' is-invalid' : '' }}"
                                 id="rekomendasi" name="rekomendasi">
                                 <option>Pilih</option>
-                                <option value="Selesai">Selesai</option>
-                                <option value="Lanjutkan">Lanjutkan</option>
-                                <option value="Gagal">Gagal</option>
-                                <option value="Lainnya">Lainnya</option>
-                                <option value="Beban Lebih">Beban Lebih</option>
+                                <option value="Selesai" {{ $data->rekomendasi == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                <option value="Lanjutkan" {{ $data->rekomendasi == 'Lanjutkan' ? 'selected' : '' }}>Lanjutkan</option>
+                                <option value="Gagal" {{ $data->rekomendasi == 'Gagal' ? 'selected' : '' }}>Gagal</option>
+                                <option value="Lainnya" {{ $data->rekomendasi == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                <option value="Beban Lebih" {{ $data->rekomendasi == 'Beban Lebih' ? 'selected' : '' }}>Beban Lebih</option>
                                 @if ($errors->has('rekomendasi'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('rekomendasi') }}</strong>

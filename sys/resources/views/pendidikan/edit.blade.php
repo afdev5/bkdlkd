@@ -49,27 +49,27 @@
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="jenis_kegiatan">
                                         <option>Pilih</option>
-                                        <option value="A">Melaksanakan Perkuliahan/Tutorial dan Membimbing, Menguji,
+                                        <option value="A" {{ $data->jenis_kegiatan == 'A' ? 'selected' : '' }}>Melaksanakan Perkuliahan/Tutorial dan Membimbing, Menguji,
                                             serta
                                             Menyelenggarakan Pendidikan di Laboratorium</option>
-                                        <option value="B">Membimbing Seminar</option>
-                                        <option value="C">Membimbing Kuliah Kerja Nyata, Praktek Kerja Nyata, Praktek
+                                        <option value="B" {{ $data->jenis_kegiatan == 'B' ? 'selected' : '' }}>Membimbing Seminar</option>
+                                        <option value="C" {{ $data->jenis_kegiatan == 'C' ? 'selected' : '' }}>Membimbing Kuliah Kerja Nyata, Praktek Kerja Nyata, Praktek
                                             Kerja
                                             Lapangan</option>
-                                        <option value="D">Membimbing dan Ikut Membimbing dalam Menghasilkan Disertasi,
+                                        <option value="D" {{ $data->jenis_kegiatan == 'D' ? 'selected' : '' }}>Membimbing dan Ikut Membimbing dalam Menghasilkan Disertasi,
                                             Tesis,
                                             Skripsi, dan Laporan Akhir Studi</option>
-                                        <option value="E">Bertugas Sebagai Penguji pada Ujian Akhir</option>
-                                        <option value="F">Membina Kegiatan Mahasiswa</option>
-                                        <option value="G">Mengembangkan Program Kuliah</option>
-                                        <option value="H">Mengembangkan Bahan Pengajaran</option>
-                                        <option value="I">Menyampaikan Orasi Ilmiah</option>
-                                        <option value="J">Membimbing Akademik Dosen yang lebih Rendah Jabatannya
+                                        <option value="E" {{ $data->jenis_kegiatan == 'E' ? 'selected' : '' }}>Bertugas Sebagai Penguji pada Ujian Akhir</option>
+                                        <option value="F" {{ $data->jenis_kegiatan == 'F' ? 'selected' : '' }}>Membina Kegiatan Mahasiswa</option>
+                                        <option value="G" {{ $data->jenis_kegiatan == 'G' ? 'selected' : '' }}>Mengembangkan Program Kuliah</option>
+                                        <option value="H" {{ $data->jenis_kegiatan == 'H' ? 'selected' : '' }}>Mengembangkan Bahan Pengajaran</option>
+                                        <option value="I" {{ $data->jenis_kegiatan == 'I' ? 'selected' : '' }}>Menyampaikan Orasi Ilmiah</option>
+                                        <option value="J" {{ $data->jenis_kegiatan == 'J' ? 'selected' : '' }}>Membimbing Akademik Dosen yang lebih Rendah Jabatannya
                                         </option>
-                                        <option value="K">Melaksanakan Kegiatan Datasering dan Pencangkokan Akademik
+                                        <option value="K" {{ $data->jenis_kegiatan == 'K' ? 'selected' : '' }}>Melaksanakan Kegiatan Datasering dan Pencangkokan Akademik
                                             Dosen
                                         </option>
-                                        <option value="L">Melakukan Kegiatan Pengembangan Diri untuk Mengingkatkan
+                                        <option value="L" {{ $data->jenis_kegiatan == 'L' ? 'selected' : '' }}>Melakukan Kegiatan Pengembangan Diri untuk Mengingkatkan
                                             Kompetensi
                                         </option>
                                         @if ($errors->has('jenis_kegiatan'))
@@ -184,11 +184,11 @@
                             <select class="form-control{{ $errors->has('rekomendasi') ? ' is-invalid' : '' }}"
                                 id="rekomendasi" name="rekomendasi">
                                 <option>Pilih</option>
-                                <option value="Selesai">Selesai</option>
-                                <option value="Lanjutkan">Lanjutkan</option>
-                                <option value="Gagal">Gagal</option>
-                                <option value="Lainnya">Lainnya</option>
-                                <option value="Beban Lebih">Beban Lebih</option>
+                                <option value="Selesai" {{ $data->rekomendasi == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                <option value="Lanjutkan" {{ $data->rekomendasi == 'Lanjutkan' ? 'selected' : '' }}>Lanjutkan</option>
+                                <option value="Gagal" {{ $data->rekomendasi == 'Gagal' ? 'selected' : '' }}>Gagal</option>
+                                <option value="Lainnya" {{ $data->rekomendasi == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                <option value="Beban Lebih" {{ $data->rekomendasi == 'Beban Lebih' ? 'selected' : '' }}>Beban Lebih</option>
                                 @if ($errors->has('rekomendasi'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('rekomendasi') }}</strong>

@@ -55,7 +55,6 @@ class IdentitasController extends Controller
         $rules = array(
             'nidn' => 'required',
             'no_sertifikat' => 'required',
-            'no_sertifikat_upload' => 'required',
             'nip' => 'required',
             'pt' => 'required',
             'alamat_pt' => 'required',
@@ -65,16 +64,12 @@ class IdentitasController extends Controller
             'tgl_lhr' => 'required',
             'tmpt_lhr' => 'required',
             'pend_s1' => 'required',
-            'ijazah_s1' => 'required',
             'pend_s2' => 'required',
-            'ijazah_s2' => 'required',
             'jenis_dosen' => 'required',
             'bid_ilmu' => 'required',
             'thn_akademik' => 'required',
             'semester' => 'required',
             'email' => 'required',
-            'ktp' => 'required',
-            'foto' => 'required',
         );
         $validator = Validator::make($request->all(), $rules, $message);
         if($validator->fails()){
